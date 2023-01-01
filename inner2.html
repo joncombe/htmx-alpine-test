@@ -1,0 +1,26 @@
+<div class="bg-slate-100 p-4 m-4">
+  <div>I am the inner section #2</div>
+  <div>Loaded at: <span x-text="new Date()"></span></div>
+
+  <div class="bg-slate-200 flex flex-row items-center my-2 p-4">
+    <span>Global test:</span>
+    <span class="bg-orange-400 mx-2 px-4 py-2" x-text="data"></span>
+    <button
+      @click="change()"
+      class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+    >
+      Change
+    </button>
+  </div>
+
+  <div class="bg-slate-200 p-4 my-2" x-data="{counter: 0}">
+    <span>Local test: </span>
+    <span class="bg-orange-400 mx-2 px-4 py-2" x-text="counter"></span>
+    <button
+      @click="counter++"
+      class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+    >
+      Increment
+    </button>
+  </div>
+</div>

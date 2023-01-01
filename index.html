@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>HTMX and Alpine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script>
+      const body = {
+        data: "I am defined in the body",
+        change() {
+          this.data = this.data + "!";
+        },
+      };
+    </script>
+  </head>
+  <body x-data="body">
+    <div class="bg-slate-100 p-4 m-4">
+      <div>I am the outer section</div>
+      <div class="bg-slate-200 flex flex-row items-center my-2 p-4">
+        <span>Global test:</span>
+        <span class="bg-orange-400 mx-2 px-4 py-2" x-text="data"></span>
+        <button
+          @click="change()"
+          class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+        >
+          Change
+        </button>
+      </div>
+      <div class="bg-slate-200 p-4 my-2" x-data="{counter: 0}">
+        <span>Local test: </span>
+        <span class="bg-orange-400 mx-2 px-4 py-2" x-text="counter"></span>
+        <button
+          @click="counter++"
+          class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+        >
+          Increment
+        </button>
+      </div>
+    </div>
+    <div class="bg-slate-100 p-4 m-4">
+      <button
+        class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+        hx-get="inner1.html"
+        hx-target="#htmx-target"
+      >
+        Load HTMX partial #1
+      </button>
+      <button
+        class="bg-sky-600 px-4 py-2 rounded text-white hover:bg-sky-700"
+        hx-get="inner2.html"
+        hx-target="#htmx-target"
+      >
+        Load HTMX partial #2
+      </button>
+    </div>
+    <div id="htmx-target"></div>
+  </body>
+</html>
